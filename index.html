@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      The History of Artificial Intelligence — An Interactive Timeline
+    </title>
+    <meta
+      name="description"
+      content="Explore the fascinating history of Artificial Intelligence from Alan Turing's groundbreaking ideas in the 1940s to today's generative AI revolution. An interactive visual timeline."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <header id="hero" class="hero">
+      <div class="hero__particles" id="particles"></div>
+      <div class="hero__content">
+        <p class="hero__label">An Interactive Journey</p>
+        <h1 class="hero__title" id="heroTitle"></h1>
+        <p class="hero__subtitle">
+          From Alan Turing's dream of thinking machines to the age of generative
+          AI — explore eight decades of breakthroughs, setbacks, and
+          revolutions.
+        </p>
+        <button class="hero__cta" id="ctaBtn">
+          <span>Explore the Timeline</span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 5v14" />
+            <path d="m19 12-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+      <div class="hero__scroll-indicator">
+        <div class="hero__mouse">
+          <div class="hero__mouse-wheel"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════════════════ TIMELINE ═══════════════════ -->
+    <main id="timeline" class="timeline-section">
+      <div class="timeline-section__header">
+        <h2 class="section-title">The Timeline</h2>
+        <p class="section-subtitle">
+          Scroll through the milestones that shaped artificial intelligence
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline__line" id="timelineLine"></div>
+
+        <!-- ──── 1940s–1950s ──── -->
+        <article
+          class="timeline__item timeline__item--left"
+          data-era="1940s–1950s"
+        >
+          <div class="timeline__dot" data-year="1950"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">1940s – 1950s</span>
+            <h3 class="timeline__card-title">The Dawn of Thinking Machines</h3>
+            <p class="timeline__card-text">
+              In 1950, Alan Turing published
+              <em>"Computing Machinery and Intelligence"</em>, posing the
+              question <strong>"Can machines think?"</strong> and introducing
+              the famous Turing Test. Six years later, the
+              <strong>Dartmouth Conference</strong> (1956) coined the very term
+              "Artificial Intelligence" and launched the field as a formal
+              discipline.
+            </p>
+            <div class="timeline__card-details" id="details-1950">
+              <ul>
+                <li>
+                  <strong>1943</strong> — McCulloch & Pitts create the first
+                  mathematical model of a neural network.
+                </li>
+                <li>
+                  <strong>1950</strong> — Turing publishes his landmark paper
+                  and proposes the "Imitation Game."
+                </li>
+                <li>
+                  <strong>1956</strong> — John McCarthy, Marvin Minsky, and
+                  colleagues host the Dartmouth Workshop — AI is born as a
+                  field.
+                </li>
+                <li>
+                  <strong>1958</strong> — Frank Rosenblatt builds the
+                  Perceptron, the first trainable neural network hardware.
+                </li>
+                <li>
+                  <strong>1959</strong> — Arthur Samuel coins the term "Machine
+                  Learning" while building a checkers program at IBM.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-1950">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 1960s ──── -->
+        <article class="timeline__item timeline__item--right" data-era="1960s">
+          <div class="timeline__dot" data-year="1960"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">1960s</span>
+            <h3 class="timeline__card-title">Early Optimism &amp; Pioneers</h3>
+            <p class="timeline__card-text">
+              The 1960s saw a burst of enthusiasm. Joseph Weizenbaum's
+              <strong>ELIZA</strong> (1966) became the first chatbot, simulating
+              a psychotherapist. Researchers built early
+              <strong>expert systems</strong> and explored symbolic AI, fueled
+              by government funding and grand predictions.
+            </p>
+            <div class="timeline__card-details" id="details-1960">
+              <ul>
+                <li>
+                  <strong>1961</strong> — Unimate, the first industrial robot,
+                  begins work at General Motors.
+                </li>
+                <li>
+                  <strong>1964</strong> — STUDENT, an early natural language
+                  processing program, solves algebra word problems.
+                </li>
+                <li>
+                  <strong>1966</strong> — ELIZA is created at MIT, becoming the
+                  first chatbot to pass a limited version of the Turing Test.
+                </li>
+                <li>
+                  <strong>1966</strong> — The ALPAC report leads to a dramatic
+                  reduction in NLP research funding.
+                </li>
+                <li>
+                  <strong>1969</strong> — Minsky &amp; Papert publish
+                  <em>Perceptrons</em>, revealing fundamental limitations of
+                  single-layer networks.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-1960">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 1970s ──── -->
+        <article class="timeline__item timeline__item--left" data-era="1970s">
+          <div class="timeline__dot" data-year="1970"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">1970s</span>
+            <h3 class="timeline__card-title">The First AI Winter</h3>
+            <p class="timeline__card-text">
+              Early promises fell short. The
+              <strong>Lighthill Report</strong> (1973) in the UK was
+              devastating, declaring AI had failed to achieve its "grandiose
+              objectives." Funding dried up across the US and UK, plunging the
+              field into its <strong>first AI Winter</strong>.
+            </p>
+            <div class="timeline__card-details" id="details-1970">
+              <ul>
+                <li>
+                  <strong>1970</strong> — SHRDLU demonstrates natural language
+                  understanding in a limited "blocks world."
+                </li>
+                <li>
+                  <strong>1973</strong> — The Lighthill Report leads to dramatic
+                  funding cuts for AI research in the UK.
+                </li>
+                <li>
+                  <strong>1974–1980</strong> — The First AI Winter: reduced
+                  funding, skepticism, and stalled progress.
+                </li>
+                <li>
+                  <strong>1976</strong> — MYCIN expert system shows potential
+                  for medical diagnosis but never gets clinical adoption.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-1970">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 1980s ──── -->
+        <article class="timeline__item timeline__item--right" data-era="1980s">
+          <div class="timeline__dot" data-year="1980"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">1980s</span>
+            <h3 class="timeline__card-title">Expert Systems Boom &amp; Bust</h3>
+            <p class="timeline__card-text">
+              AI roared back. <strong>Expert systems</strong> became a
+              billion-dollar industry, and Japan's ambitious
+              <strong>Fifth Generation Computer</strong> project spurred
+              worldwide investment. Yet the hype outpaced reality, and by
+              decade's end, the <strong>second AI Winter</strong> set in as
+              expert systems proved brittle and hard to maintain.
+            </p>
+            <div class="timeline__card-details" id="details-1980">
+              <ul>
+                <li>
+                  <strong>1980</strong> — XCON/R1, a commercial expert system
+                  for configuring computer orders, saves DEC $40 million/year.
+                </li>
+                <li>
+                  <strong>1982</strong> — Japan launches the Fifth Generation
+                  Computer Systems project, igniting a global AI race.
+                </li>
+                <li>
+                  <strong>1986</strong> — Geoffrey Hinton, David Rumelhart, and
+                  Ronald Williams popularize backpropagation, reviving neural
+                  networks.
+                </li>
+                <li>
+                  <strong>1987–1993</strong> — The Second AI Winter: the expert
+                  systems market collapses, investment dries up again.
+                </li>
+                <li>
+                  <strong>1989</strong> — Yann LeCun develops Convolutional
+                  Neural Networks (CNNs) for handwriting recognition.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-1980">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 1990s ──── -->
+        <article class="timeline__item timeline__item--left" data-era="1990s">
+          <div class="timeline__dot" data-year="1990"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">1990s</span>
+            <h3 class="timeline__card-title">
+              Deep Blue &amp; the Statistical Revolution
+            </h3>
+            <p class="timeline__card-text">
+              In 1997, IBM's <strong>Deep Blue</strong> defeated world chess
+              champion Garry Kasparov — a watershed moment beamed into every
+              living room. Meanwhile,
+              <strong>statistical machine learning</strong> quietly replaced
+              symbolic approaches, with Support Vector Machines and
+              probabilistic models becoming the tools of choice.
+            </p>
+            <div class="timeline__card-details" id="details-1990">
+              <ul>
+                <li>
+                  <strong>1995</strong> — Random Forest algorithm and Support
+                  Vector Machines gain widespread adoption.
+                </li>
+                <li>
+                  <strong>1997</strong> — Deep Blue beats Garry Kasparov in a
+                  six-game match, making headlines worldwide.
+                </li>
+                <li>
+                  <strong>1997</strong> — Jürgen Schmidhuber &amp; Sepp
+                  Hochreiter invent Long Short-Term Memory (LSTM) networks.
+                </li>
+                <li>
+                  <strong>1998</strong> — Amazon and others begin using
+                  collaborative filtering — an early form of recommendation AI.
+                </li>
+                <li>
+                  <strong>1999</strong> — Sony releases AIBO, the first
+                  consumer-market AI robot pet.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-1990">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 2000s ──── -->
+        <article class="timeline__item timeline__item--right" data-era="2000s">
+          <div class="timeline__dot" data-year="2000"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">2000s</span>
+            <h3 class="timeline__card-title">
+              Big Data &amp; the Deep Learning Spark
+            </h3>
+            <p class="timeline__card-text">
+              The explosion of internet data and cheap GPUs laid the foundation
+              for AI's comeback. The <strong>Netflix Prize</strong> (2006)
+              popularized ML competitions, and Geoffrey Hinton's team showed
+              that <strong>deep neural networks</strong> could be effectively
+              trained, reigniting interest in neural approaches.
+            </p>
+            <div class="timeline__card-details" id="details-2000">
+              <ul>
+                <li>
+                  <strong>2002</strong> — iRobot releases Roomba — AI enters
+                  millions of homes.
+                </li>
+                <li>
+                  <strong>2004</strong> — DARPA Grand Challenge for autonomous
+                  vehicles — no car finishes, but it sparks a revolution.
+                </li>
+                <li>
+                  <strong>2006</strong> — Geoffrey Hinton publishes breakthrough
+                  work on deep belief networks, coining "deep learning."
+                </li>
+                <li>
+                  <strong>2006</strong> — Netflix launches the Netflix Prize — a
+                  $1M challenge that supercharges collaborative filtering
+                  research.
+                </li>
+                <li>
+                  <strong>2009</strong> — Google begins secretly developing
+                  self-driving cars (later Waymo).
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-2000">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 2010s ──── -->
+        <article class="timeline__item timeline__item--left" data-era="2010s">
+          <div class="timeline__dot" data-year="2010"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">2010s</span>
+            <h3 class="timeline__card-title">
+              Deep Learning Conquers the World
+            </h3>
+            <p class="timeline__card-text">
+              Everything changed in 2012 when <strong>AlexNet</strong> crushed
+              the ImageNet competition, proving deep learning's power. In 2016,
+              DeepMind's <strong>AlphaGo</strong> beat world champion Lee Sedol
+              at Go — a game experts thought was decades away from computer
+              mastery. The <strong>Transformer</strong> architecture (2017) set
+              the stage for language models.
+            </p>
+            <div class="timeline__card-details" id="details-2010">
+              <ul>
+                <li>
+                  <strong>2011</strong> — IBM Watson wins Jeopardy!, showcasing
+                  natural language QA at scale.
+                </li>
+                <li>
+                  <strong>2012</strong> — AlexNet wins ImageNet by a huge
+                  margin, launching the deep learning revolution.
+                </li>
+                <li>
+                  <strong>2014</strong> — Ian Goodfellow invents Generative
+                  Adversarial Networks (GANs).
+                </li>
+                <li>
+                  <strong>2016</strong> — AlphaGo defeats Lee Sedol 4–1 in Go,
+                  watched by 200 million people.
+                </li>
+                <li>
+                  <strong>2017</strong> — Google publishes "Attention Is All You
+                  Need" — the Transformer is born.
+                </li>
+                <li>
+                  <strong>2018</strong> — BERT and GPT mark the beginning of the
+                  large language model era.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-2010">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- ──── 2020s ──── -->
+        <article class="timeline__item timeline__item--right" data-era="2020s">
+          <div class="timeline__dot" data-year="2020"></div>
+          <div class="timeline__card">
+            <span class="timeline__era">2020s</span>
+            <h3 class="timeline__card-title">The Generative AI Explosion</h3>
+            <p class="timeline__card-text">
+              The 2020s became the era of generative AI.
+              <strong>GPT-3</strong> (2020) stunned the world with human-like
+              text generation. <strong>DALL·E</strong>,
+              <strong>Midjourney</strong>, and
+              <strong>Stable Diffusion</strong> made AI art mainstream. Then in
+              November 2022, <strong>ChatGPT</strong> reached 100 million users
+              in two months — the fastest-growing app in history — ushering AI
+              into everyday life.
+            </p>
+            <div class="timeline__card-details" id="details-2020">
+              <ul>
+                <li>
+                  <strong>2020</strong> — OpenAI releases GPT-3 with 175 billion
+                  parameters — a step-change in language capability.
+                </li>
+                <li>
+                  <strong>2020</strong> — AlphaFold solves the 50-year-old
+                  protein folding problem, revolutionizing biology.
+                </li>
+                <li>
+                  <strong>2021</strong> — GitHub Copilot brings AI pair
+                  programming to developers worldwide.
+                </li>
+                <li>
+                  <strong>2022</strong> — DALL·E 2, Midjourney, and Stable
+                  Diffusion launch — AI-generated art goes viral.
+                </li>
+                <li>
+                  <strong>2022</strong> — ChatGPT is released and becomes the
+                  fastest-growing consumer app ever.
+                </li>
+                <li>
+                  <strong>2023</strong> — GPT-4 demonstrates multimodal
+                  reasoning; AI regulation debates intensify globally.
+                </li>
+                <li>
+                  <strong>2024–2025</strong> — AI agents, video generation
+                  (Sora), and open-source LLMs reshape industries.
+                </li>
+              </ul>
+            </div>
+            <button class="timeline__card-toggle" data-target="details-2020">
+              <span class="toggle-text">Read more</span>
+              <svg
+                class="toggle-icon"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          </div>
+        </article>
+      </div>
+      <!-- .timeline -->
+    </main>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <p class="footer__text">
+          Built with curiosity · The History of AI ·
+          <span id="footerYear"></span>
+        </p>
+        <div class="footer__glow"></div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
