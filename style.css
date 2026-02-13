@@ -172,6 +172,25 @@ body {
   transform: rotate(0deg);
 }
 
+/* ── Scroll Progress ───────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--bg-deep);
+  z-index: 1001;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  background: var(--gradient-accent);
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px var(--glow-cyan);
+}
+
 /* ── Hero ─────────────────────────────────────────────── */
 .hero {
   position: relative;
@@ -328,9 +347,31 @@ body {
   cursor: pointer;
   transition:
     transform 0.3s var(--ease-out-expo),
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    letter-spacing 0.3s ease;
   opacity: 0;
   animation: fadeSlideUp 0.8s var(--ease-out-expo) 1.3s forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CTA button shine effect */
+.hero__cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.hero__cta:hover::after {
+  transform: translateX(100%);
 }
 
 .hero__cta:hover {
@@ -338,6 +379,7 @@ body {
   box-shadow:
     0 12px 40px var(--glow-cyan),
     0 4px 16px var(--glow-purple);
+  letter-spacing: 0.05em;
 }
 
 .hero__cta:active {
@@ -402,11 +444,22 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: var(--space-xs);
+  transition: transform 0.3s var(--ease-out-expo);
+  cursor: default;
+}
+
+.section-title:hover {
+  transform: scale(1.02);
 }
 
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.section-subtitle:hover {
+  color: var(--text-primary);
 }
 
 /* ── Timeline Container ──────────────────────────────── */
@@ -477,6 +530,32 @@ body {
     transform 0.4s;
 }
 
+/* Pulsing effect for dots */
+.timeline__dot::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  opacity: 0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.timeline__dot.is-active::before {
+  animation: none;
+}
+
 .timeline__item--left .timeline__dot {
   right: -9px;
 }
@@ -489,8 +568,19 @@ body {
   background: var(--accent-cyan);
   box-shadow:
     0 0 20px var(--glow-cyan),
-    0 0 40px var(--glow-cyan);
+    0 0 40px var(--glow-cyan),
+    0 0 60px var(--glow-cyan);
   transform: scale(1.3);
+}
+
+/* Dot hover effect */
+.timeline__dot:hover {
+  transform: scale(1.2);
+  border-color: var(--accent-purple);
+}
+
+.timeline__dot.is-active:hover {
+  transform: scale(1.4);
 }
 
 /* ── Card ─────────────────────────────────────────────── */
@@ -507,14 +597,42 @@ body {
     box-shadow 0.4s,
     transform 0.4s var(--ease-out-expo);
   text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card ripple effect */
+.timeline__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--accent-cyan) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.timeline__card:hover::before {
+  opacity: 0.08;
+}
+
+/* Ensure content is above ripple */
+.timeline__card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .timeline__card:hover {
   border-color: rgba(0, 229, 255, 0.3);
   box-shadow:
-    0 8px 32px rgba(0, 229, 255, 0.08),
+    0 12px 40px rgba(0, 229, 255, 0.12),
     0 0 0 1px rgba(0, 229, 255, 0.12);
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.01);
 }
 
 .timeline__era {
@@ -526,6 +644,13 @@ body {
   letter-spacing: 0.2em;
   color: var(--accent-purple);
   margin-bottom: var(--space-xs);
+  transition: transform 0.3s var(--ease-out-expo), color 0.3s ease;
+  cursor: default;
+}
+
+.timeline__era:hover {
+  transform: translateX(4px);
+  color: var(--accent-cyan);
 }
 
 .timeline__card-title {
@@ -646,6 +771,21 @@ body {
 .footer__text {
   font-size: 0.88rem;
   color: var(--text-dim);
+}
+
+.footer__credit {
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  margin-top: var(--space-xs);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeSlideUp 0.6s var(--ease-out-expo) 2.5s forwards;
+}
+
+.footer__credit:hover {
+  color: var(--accent-purple);
+  text-shadow: 0 0 10px var(--glow-purple);
 }
 
 .footer__glow {

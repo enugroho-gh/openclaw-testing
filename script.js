@@ -210,6 +210,32 @@ document.addEventListener("DOMContentLoaded", () => {
     particlesContainer.appendChild(p);
   }
 
+  /* ── Scroll Progress Bar ─────────────────────────────── */
+  const scrollProgress = document.getElementById("scrollProgress");
+  window.addEventListener(
+    "scroll",
+    () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollProgress.style.width = `${scrollPercent}%`;
+    },
+    { passive: true },
+  );
+
+  /* ── Card Ripple Effect ───────────────────────────── */
+  const timelineCards = document.querySelectorAll(".timeline__card");
+
+  timelineCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
+
   /* ── Intersection Observer for timeline cards ─────── */
   const timelineItems = document.querySelectorAll(".timeline__item");
   const timelineDots = document.querySelectorAll(".timeline__dot");
@@ -221,9 +247,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const itemObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
+        // Add staggered delay based on index
+        const delay = index * 100;
+        setTimeout(() => {
+          entry.target.classList.add("is-visible");
+        }, delay);
       }
     });
   }, observerOptions);
