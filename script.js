@@ -3,6 +3,21 @@
    ═══════════════════════════════════════════════════════ */
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* ── Theme Toggle ───────────────────────────────────── */
+  const themeToggle = document.getElementById("themeToggle");
+  const html = document.documentElement;
+
+  // Load saved theme or default to dark
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  html.setAttribute("data-theme", savedTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = html.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  });
+
   /* ── Typing animation for hero title ──────────────── */
   const heroTitle = document.getElementById("heroTitle");
   const titleText = "The History of Artificial Intelligence";
@@ -35,11 +50,150 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("timeline").scrollIntoView({ behavior: "smooth" });
   });
 
-  /* ── Particle generator ───────────────────────────── */
-  const particlesContainer = document.getElementById("particles");
-  const particleCount = 35;
+  /* ── Interactive Canvas Background ─────────────────── */
+  const canvas = document.getElementById("heroCanvas");
+  const ctx = canvas.getContext("2d");
+  let width, height;
+  let particles = [];
+  let mouse = { x: 0, y: 0 };
+  const particleCount = 60;
+  const connectionDistance = 150;
+  const mouseInfluenceRadius = 200;
 
+  // Resize handler
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  // Mouse tracking
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  // Particle class
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 1.5;
+      this.vy = (Math.random() - 0.5) * 1.5;
+      this.radius = Math.random() * 2 + 1;
+      this.baseRadius = this.radius;
+    }
+
+    update() {
+      // Move particle
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+
+      // Mouse interaction
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < mouseInfluenceRadius) {
+        const force = (mouseInfluenceRadius - dist) / mouseInfluenceRadius;
+        const angle = Math.atan2(dy, dx);
+        this.vx += Math.cos(angle) * force * 0.5;
+        this.vy += Math.sin(angle) * force * 0.5;
+        this.radius = this.baseRadius * (1 + force);
+      } else {
+        this.radius += (this.baseRadius - this.radius) * 0.1;
+      }
+
+      // Limit velocity
+      const maxSpeed = 2.5;
+      const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+      if (speed > maxSpeed) {
+        this.vx = (this.vx / speed) * maxSpeed;
+        this.vy = (this.vy / speed) * maxSpeed;
+      }
+    }
+
+    draw() {
+      const isDark = html.getAttribute("data-theme") === "dark";
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = isDark
+        ? `rgba(0, 229, 255, ${0.5 + Math.random() * 0.3})`
+        : `rgba(0, 168, 181, ${0.4 + Math.random() * 0.2})`;
+      ctx.fill();
+    }
+  }
+
+  // Initialize particles
   for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+
+  // Animation loop
+  function animate() {
+    const isDark = html.getAttribute("data-theme") === "dark";
+    ctx.clearRect(0, 0, width, height);
+
+    // Update and draw particles
+    particles.forEach((p) => {
+      p.update();
+      p.draw();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < connectionDistance) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          const opacity = (1 - dist / connectionDistance) * 0.3;
+          ctx.strokeStyle = isDark
+            ? `rgba(0, 229, 255, ${opacity})`
+            : `rgba(0, 168, 181, ${opacity})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+
+      // Draw mouse connection
+      const dx = particles[i].x - mouse.x;
+      const dy = particles[i].y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < mouseInfluenceRadius) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        const opacity = (1 - dist / mouseInfluenceRadius) * 0.4;
+        ctx.strokeStyle = isDark
+          ? `rgba(168, 85, 247, ${opacity})`
+          : `rgba(147, 51, 234, ${opacity})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  /* ── Floating particles overlay ────────────────────── */
+  const particlesContainer = document.getElementById("particles");
+  const floatingParticleCount = 35;
+
+  for (let i = 0; i < floatingParticleCount; i++) {
     const p = document.createElement("div");
     p.classList.add("particle");
     const size = Math.random() * 4 + 2;
